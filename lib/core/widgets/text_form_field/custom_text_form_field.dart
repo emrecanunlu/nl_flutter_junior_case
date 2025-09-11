@@ -85,8 +85,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                       ),
                       child: SvgPicture.asset(
                         _isPasswordVisible
-                            ? AppIcons.see.path
-                            : AppIcons.hide.path,
+                            ? AppIcons.hide.path
+                            : AppIcons.see.path,
                         width: 24,
                         height: 24,
                         colorFilter: ColorFilter.mode(

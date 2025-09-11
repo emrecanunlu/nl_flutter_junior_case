@@ -117,7 +117,7 @@ class LoginView extends BaseView<LoginController> {
           const SizedBox(height: 24),
           buildSocialButtonRow(),
           const SizedBox(height: 24),
-          AuthRichText.signUp(onTap: () {}),
+          AuthRichText.signUp(onTap: controller.onSignUpTap),
         ],
       ),
     );

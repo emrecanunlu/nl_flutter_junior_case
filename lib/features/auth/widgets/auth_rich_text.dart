@@ -11,6 +11,7 @@ class AuthRichText extends StatelessWidget {
   final TextAlign? textAlign;
   final TextStyle? normalStyle;
   final TextStyle? clickableStyle;
+  final bool isUnderline;
 
   const AuthRichText({
     super.key,
@@ -21,19 +22,29 @@ class AuthRichText extends StatelessWidget {
     this.textAlign = TextAlign.center,
     this.normalStyle,
     this.clickableStyle,
+    this.isUnderline = false,
   });
 
-  // Kullanıcı sözleşmesi için factory constructor
+  /* Kullanıcı sözleşmesini Okudum ve Kabul ediyorum. Bu sözelşmeyi okuyarak devam ediniz lütfen. */
+
   factory AuthRichText.termsAndConditions({
     required VoidCallback onTap,
     TextAlign? textAlign,
   }) {
     return AuthRichText(
-      beforeText: 'Kullanıcı sözleşmesini okudum ve kabul ediyorum.',
-      clickableText: 'Bu sözleşmeyi',
-      afterText: ' okuyarak devam ediniz lütfen.',
+      beforeText: "Kullanıcı sözleşmesini ",
+      clickableText: 'Okudum ve Kabul ediyorum. ',
+      afterText: ' Bu sözelşmeyi okuyarak devam ediniz lütfen.',
       onTap: onTap,
       textAlign: textAlign,
+      isUnderline: true,
+      clickableStyle: Get.textTheme.labelLarge?.copyWith(
+        color: Get.theme.colorScheme.onSurface,
+        decoration: TextDecoration.underline,
+      ),
+      normalStyle: Get.textTheme.labelLarge?.copyWith(
+        color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.6),
+      ),
     );
   }
 
@@ -48,6 +59,21 @@ class AuthRichText extends StatelessWidget {
       afterText: '',
       onTap: onTap,
       textAlign: textAlign,
+      isUnderline: false,
+    );
+  }
+
+  factory AuthRichText.signIn({
+    required VoidCallback onTap,
+    TextAlign? textAlign,
+  }) {
+    return AuthRichText(
+      beforeText: 'Hesabın var mı? ',
+      clickableText: 'Giriş Yap',
+      afterText: '',
+      onTap: onTap,
+      textAlign: textAlign,
+      isUnderline: false,
     );
   }
 
@@ -60,6 +86,7 @@ class AuthRichText extends StatelessWidget {
     final defaultClickableStyle = Get.textTheme.bodySmall?.copyWith(
       color: Get.theme.colorScheme.onSurface,
       fontWeight: FontWeight.w600,
+      decoration: isUnderline ? TextDecoration.underline : TextDecoration.none,
     );
 
     return RichText(

@@ -15,9 +15,7 @@ class GradientContainer extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Child content
-            child,
-            // Radial gradient overlay - en üstte
+            // Radial gradient overlay - arka planda
             Positioned(
               top: -71,
               left: 0,
@@ -29,6 +27,8 @@ class GradientContainer extends StatelessWidget {
                 ),
               ),
             ),
+            // Child content - en üstte
+            child,
           ],
         ),
       ),

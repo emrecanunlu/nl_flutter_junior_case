@@ -89,5 +89,26 @@ class AppThemes {
         borderRadius: BorderRadius.circular(18),
       ),
     ),
+
+    checkboxTheme: CheckboxThemeData(
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.primary;
+        }
+        return AppColors.white5;
+      }),
+      checkColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.white;
+        }
+
+        return AppColors.white5;
+      }),
+      side: BorderSide(color: AppColors.white20),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(6),
+        side: BorderSide(color: AppColors.white20),
+      ),
+    ),
   );
 }
