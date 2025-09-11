@@ -6,6 +6,7 @@ class AppThemes {
   AppThemes._();
 
   static final ThemeData darkTheme = ThemeData(
+    fontFamily: 'InstrumentSans',
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.black,
     colorScheme: ColorScheme.dark(
@@ -70,6 +71,23 @@ class AppThemes {
       // Body XSmall
       labelMedium: AppTextStyles.bodyXSmallRegular,
       labelSmall: AppTextStyles.bodyXSmallRegular,
+    ),
+
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.white5,
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.white20),
+        borderRadius: BorderRadius.circular(18),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.white20),
+        borderRadius: BorderRadius.circular(18),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.white20),
+        borderRadius: BorderRadius.circular(18),
+      ),
     ),
   );
 }
