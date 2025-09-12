@@ -21,12 +21,8 @@ class UploadPhotoView extends BaseView<UploadPhotoController> {
       body: GradientContainer(
         child: SafeArea(
           child: Column(
-            children: [
-              buildHeader(),
-              const SizedBox(height: 56),
-              buildUploadArea(),
-              buildFooter(),
-            ],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [buildHeader(), buildUploadArea(), buildFooter()],
           ),
         ),
       ),
@@ -88,17 +84,27 @@ class UploadPhotoView extends BaseView<UploadPhotoController> {
   }
 
   Widget buildUploadSubtitle() {
-    return Text(
-      'screen.uploadPhoto.uploadSubtitle'.tr,
-      style: Get.textTheme.bodySmall?.copyWith(
-        color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.9),
+    return SizedBox(
+      width: Get.width * 0.5,
+      child: Text(
+        'screen.uploadPhoto.uploadSubtitle'.tr,
+        style: Get.textTheme.bodySmall?.copyWith(
+          color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.9),
+        ),
+        textAlign: TextAlign.center,
       ),
-      textAlign: TextAlign.center,
     );
   }
 
   Widget buildPhotoPicker() {
-    return PhotoPicker(size: Get.width * 0.5);
+    return Obx(() {
+      return PhotoPicker(
+        size: Get.width * 0.45,
+        onSelectImageTap: controller.onPhotoPickerTap,
+        path: controller.selectedImagePath.value,
+        onClearImage: controller.clearSelectedImagePath,
+      );
+    });
   }
 
   Widget buildContinueButton() {
@@ -114,23 +120,17 @@ class UploadPhotoView extends BaseView<UploadPhotoController> {
   }
 
   Widget buildUploadArea() {
-    return Expanded(
-      child: Center(
-        child: SizedBox(
-          width: Get.width * 0.5,
-          child: Column(
-            children: [
-              buildPersonIcon(),
-              const SizedBox(height: 16),
-              buildUploadTitle(),
-              const SizedBox(height: 12),
-              buildUploadSubtitle(),
-              const SizedBox(height: 52),
-              buildPhotoPicker(),
-            ],
-          ),
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        buildPersonIcon(),
+        const SizedBox(height: 16),
+        buildUploadTitle(),
+        const SizedBox(height: 12),
+        buildUploadSubtitle(),
+        const SizedBox(height: 52),
+        buildPhotoPicker(),
+      ],
     );
   }
 

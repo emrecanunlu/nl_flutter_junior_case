@@ -5,44 +5,169 @@ import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
 
 class PhotoPicker extends StatelessWidget {
   final double size;
-  const PhotoPicker({super.key, required this.size});
+  final VoidCallback onSelectImageTap;
+  final String? path;
+  final VoidCallback? onClearImage;
+
+  const PhotoPicker({
+    super.key,
+    required this.size,
+    required this.onSelectImageTap,
+    this.path,
+    this.onClearImage,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(32),
-        splashColor: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
-        highlightColor: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
-        child: Container(
-          width: size,
-          height: size,
-          decoration: BoxDecoration(
-            color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: (path != null && path!.isNotEmpty) ? null : onSelectImageTap,
             borderRadius: BorderRadius.circular(32),
-          ),
-          child: CustomPaint(
-            painter: DashedBorderPainter(
-              color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.2),
-              strokeWidth: 2,
-              dashLength: 4,
-              dashSpace: 5,
-              borderRadius: 32,
+            splashColor: Get.theme.colorScheme.onSurface.withValues(
+              alpha: 0.05,
+            ),
+            highlightColor: Get.theme.colorScheme.onSurface.withValues(
+              alpha: 0.05,
             ),
             child: Container(
-              alignment: Alignment.center,
-              child: SvgPicture.asset(
-                AppIcons.plus.path,
-                width: 32,
-                height: 32,
-                colorFilter: ColorFilter.mode(
-                  Get.theme.colorScheme.onSurface,
-                  BlendMode.srcIn,
-                ),
+              width: size,
+              height: size,
+              decoration: BoxDecoration(
+                color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                borderRadius: BorderRadius.circular(32),
+              ),
+              child: buildPickerArea(),
+            ),
+          ),
+        ),
+        if (path != null && path!.isNotEmpty && onClearImage != null) ...[
+          const SizedBox(height: 12),
+          buildClearButton(),
+        ],
+      ],
+    );
+  }
+
+  Widget buildPickerArea() {
+    if (path != null && path!.isNotEmpty) {
+      return buildImageArea();
+    } else {
+      return buildPlusIconArea();
+    }
+  }
+
+  Widget buildImageArea() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(32),
+      child: _buildImage(),
+    );
+  }
+
+  Widget _buildImage() {
+    if (path!.startsWith('https://')) {
+      // Network image
+      return Image.network(
+        path!,
+        width: size,
+        height: size,
+        fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Container(
+            width: size,
+            height: size,
+            color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
+            child: Center(
+              child: CircularProgressIndicator(
+                value:
+                    loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                        : null,
+                strokeWidth: 2,
               ),
             ),
+          );
+        },
+        errorBuilder: (context, error, stackTrace) {
+          return buildErrorWidget();
+        },
+      );
+    } else {
+      // Local image
+      return Image.asset(
+        path!,
+        width: size,
+        height: size,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return buildErrorWidget();
+        },
+      );
+    }
+  }
+
+  Widget buildErrorWidget() {
+    return Container(
+      width: size,
+      height: size,
+      color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
+      child: Center(
+        child: Icon(
+          Icons.error_outline,
+          color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.5),
+          size: 32,
+        ),
+      ),
+    );
+  }
+
+  Widget buildPlusIconArea() {
+    return CustomPaint(
+      painter: DashedBorderPainter(
+        color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.2),
+        strokeWidth: 2,
+        dashLength: 4,
+        dashSpace: 5,
+        borderRadius: 32,
+      ),
+      child: Container(
+        alignment: Alignment.center,
+        child: SvgPicture.asset(
+          AppIcons.plus.path,
+          width: 32,
+          height: 32,
+          colorFilter: ColorFilter.mode(
+            Get.theme.colorScheme.onSurface,
+            BlendMode.srcIn,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildClearButton() {
+    return IconButton(
+      onPressed: onClearImage,
+      icon: SvgPicture.asset(
+        AppIcons.x.path,
+        width: 24,
+        height: 24,
+        colorFilter: ColorFilter.mode(
+          Get.theme.colorScheme.onSurface,
+          BlendMode.srcIn,
+        ),
+      ),
+      style: IconButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: CircleBorder(
+          side: BorderSide(
+            color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.5),
           ),
         ),
       ),
