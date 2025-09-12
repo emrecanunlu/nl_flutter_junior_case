@@ -29,7 +29,7 @@ class UserModel extends BaseModel<UserModel> {
       name: json['name'],
       email: json['email'],
       photoUrl: json['photoUrl'],
-      token: json['token'],
+      token: json['token'] ?? "",
     );
   }
 
@@ -42,5 +42,21 @@ class UserModel extends BaseModel<UserModel> {
       'photoUrl': photoUrl,
       'token': token,
     };
+  }
+
+  UserModel copyWith({
+    String? id,
+    String? name,
+    String? email,
+    String? photoUrl,
+    String? token,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      photoUrl: photoUrl ?? this.photoUrl,
+      token: token ?? this.token,
+    );
   }
 }

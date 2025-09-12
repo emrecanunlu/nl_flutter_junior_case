@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:jr_case_boilerplate/core/managers/network/interceptors/auth_interceptor.dart';
 import 'package:jr_case_boilerplate/core/managers/network/interceptors/error_interceptor.dart';
 
 class NetworkManager {
@@ -25,6 +26,9 @@ class NetworkManager {
   }
 
   void _setupInterceptors() {
+    // Authorization interceptor
+    dio.interceptors.add(AuthInterceptor());
+
     // Error handling interceptor
     dio.interceptors.add(ErrorInterceptor());
 

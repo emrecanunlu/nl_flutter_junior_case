@@ -35,15 +35,16 @@ class UploadPhotoView extends BaseView<UploadPhotoController> {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: CustomIconButton(
-              onPressed: () {},
-              icon: AppIcons.arrow,
-              width: 44,
-              height: 40,
+          if (Get.routing.isBack ?? false)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: CustomIconButton(
+                onPressed: () {},
+                icon: AppIcons.arrow,
+                width: 44,
+                height: 40,
+              ),
             ),
-          ),
           Text(
             'screen.uploadPhoto.title'.tr,
             style: Get.textTheme.bodyLarge?.copyWith(
@@ -85,7 +86,7 @@ class UploadPhotoView extends BaseView<UploadPhotoController> {
 
   Widget buildUploadSubtitle() {
     return SizedBox(
-      width: Get.width * 0.5,
+      width: 200,
       child: Text(
         'screen.uploadPhoto.uploadSubtitle'.tr,
         style: Get.textTheme.bodySmall?.copyWith(
@@ -99,23 +100,32 @@ class UploadPhotoView extends BaseView<UploadPhotoController> {
   Widget buildPhotoPicker() {
     return Obx(() {
       return PhotoPicker(
-        size: Get.width * 0.45,
+        size: 200,
         onSelectImageTap: controller.onPhotoPickerTap,
         path: controller.selectedImagePath.value,
         onClearImage: controller.clearSelectedImagePath,
+        isPicking: controller.isPicking.value,
       );
     });
   }
 
   Widget buildContinueButton() {
-    return CustomPrimaryButton(onPressed: () {}, title: 'common.continue'.tr);
+    return Obx(() {
+      return CustomPrimaryButton(
+        onPressed: controller.onContinueTap,
+        title: 'common.continue'.tr,
+        disabled: controller.selectedImagePath.value == null,
+        isLoading: controller.isUploading.value,
+      );
+    });
   }
 
   Widget buildSkipButton() {
     return CustomPrimaryButton(
-      onPressed: () {},
+      onPressed: controller.onSkipTap,
       title: 'common.skip'.tr,
       variant: ButtonVariant.text,
+      disabled: controller.isUploading.value,
     );
   }
 

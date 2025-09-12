@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
+import 'package:jr_case_boilerplate/core/widgets/cached_network_image/custom_cached_network_image.dart';
 
 class PhotoPicker extends StatelessWidget {
   final double size;
   final VoidCallback onSelectImageTap;
   final String? path;
   final VoidCallback? onClearImage;
+  final bool isPicking;
 
   const PhotoPicker({
     super.key,
@@ -15,6 +17,7 @@ class PhotoPicker extends StatelessWidget {
     required this.onSelectImageTap,
     this.path,
     this.onClearImage,
+    this.isPicking = false,
   });
 
   @override
@@ -25,7 +28,10 @@ class PhotoPicker extends StatelessWidget {
         Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: (path != null && path!.isNotEmpty) ? null : onSelectImageTap,
+            onTap:
+                (path != null && path!.isNotEmpty || isPicking)
+                    ? null
+                    : onSelectImageTap,
             borderRadius: BorderRadius.circular(32),
             splashColor: Get.theme.colorScheme.onSurface.withValues(
               alpha: 0.05,
@@ -61,52 +67,32 @@ class PhotoPicker extends StatelessWidget {
   }
 
   Widget buildImageArea() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(32),
-      child: _buildImage(),
-    );
+    return _buildImage();
   }
 
   Widget _buildImage() {
     if (path!.startsWith('https://')) {
-      // Network image
-      return Image.network(
-        path!,
+      // Network image - CustomCachedNetworkImage kullan
+      return CustomCachedNetworkImage(
+        imageUrl: path!,
         width: size,
         height: size,
         fit: BoxFit.cover,
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Container(
-            width: size,
-            height: size,
-            color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
-            child: Center(
-              child: CircularProgressIndicator(
-                value:
-                    loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-                strokeWidth: 2,
-              ),
-            ),
-          );
-        },
-        errorBuilder: (context, error, stackTrace) {
-          return buildErrorWidget();
-        },
+        borderRadius: BorderRadius.circular(32),
       );
     } else {
       // Local image
-      return Image.asset(
-        path!,
-        width: size,
-        height: size,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) {
-          return buildErrorWidget();
-        },
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(32),
+        child: Image.asset(
+          path!,
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return buildErrorWidget();
+          },
+        ),
       );
     }
   }
@@ -137,15 +123,23 @@ class PhotoPicker extends StatelessWidget {
       ),
       child: Container(
         alignment: Alignment.center,
-        child: SvgPicture.asset(
-          AppIcons.plus.path,
-          width: 32,
-          height: 32,
-          colorFilter: ColorFilter.mode(
-            Get.theme.colorScheme.onSurface,
-            BlendMode.srcIn,
-          ),
-        ),
+        child:
+            isPicking
+                ? CircularProgressIndicator(
+                  strokeWidth: 3,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Get.theme.colorScheme.onSurface,
+                  ),
+                )
+                : SvgPicture.asset(
+                  AppIcons.plus.path,
+                  width: 32,
+                  height: 32,
+                  colorFilter: ColorFilter.mode(
+                    Get.theme.colorScheme.onSurface,
+                    BlendMode.srcIn,
+                  ),
+                ),
       ),
     );
   }
