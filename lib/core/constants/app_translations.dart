@@ -10,14 +10,25 @@ class AppTranslations extends Translations {
       'screen.register.title': 'Hesap Oluştur',
       'screen.register.subtitle': 'Kullancı bilgilerini girerek kaydol',
 
+      'screen.uploadPhoto.title': 'Profil Detayı',
+      'screen.uploadPhoto.uploadTitle': 'Fotoğraf Yükle',
+      'screen.uploadPhoto.uploadSubtitle':
+          'Profil fotoğrafın için görsel yükleyebilirsin',
+
+      "error.termsAndConditions":
+          "Lütfen kullanıcı sözleşmesini okuyup kabul ediniz!",
+
       'common.email': 'E-Posta',
       'common.password': 'Şifre',
       'common.confirmPassword': 'Şifre Tekrar',
       'common.fullName': 'Ad Soyad',
 
+      'common.continue': 'Devam Et',
+      'common.skip': 'Atla',
       'common.forgotPassword': 'Şifre Unuttum',
       'common.signIn': 'Giriş Yap',
       'common.signUp': 'Kayıt Ol',
+      'common.registerSuccess': 'Kayıt başarılı, giriş yapabilirsiniz.',
 
       'validation.required': 'Bu alan zorunludur',
       'validation.invalidEmail': 'Geçersiz e-posta adresi',

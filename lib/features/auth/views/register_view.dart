@@ -74,7 +74,7 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
       key: controller.formKey,
       child: Column(
         children: [
-          buildFullNameFormField(),
+          buildNameFormField(),
           const SizedBox(height: 16),
           buildEmailFormField(),
           const SizedBox(height: 16),
@@ -111,10 +111,10 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
     );
   }
 
-  Widget buildFullNameFormField() {
+  Widget buildNameFormField() {
     return CustomTextFormField(
       prefixIcon: AppIcons.user,
-      controller: controller.field('fullName'),
+      controller: controller.field('name'),
       hintText: 'common.fullName'.tr,
       validator: validateFullName,
       textInputAction: TextInputAction.next,

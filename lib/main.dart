@@ -5,8 +5,9 @@ import 'core/constants/app_translations.dart';
 import 'core/routes/app_router.dart';
 import 'core/routes/app_routes.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const ShartFlix());
 }
 
@@ -20,7 +21,7 @@ class ShartFlix extends StatelessWidget {
       themeMode: ThemeMode.dark,
       theme: AppThemes.darkTheme,
       translations: AppTranslations(),
-      initialRoute: AppRoutes.login, // İlk route
+      initialRoute: AppRoutes.uploadPhoto, // İlk route
       locale: const Locale('tr', 'TR'),
       getPages: AppRouter.routes, // Route listesi
       debugShowCheckedModeBanner: false, // Debug banner'ı gizle

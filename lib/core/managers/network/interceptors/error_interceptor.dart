@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:jr_case_boilerplate/core/helpers/toast_helper.dart';
+import 'package:jr_case_boilerplate/core/helpers/toast/toast_helper.dart';
 import 'package:get/get.dart';
 
 class ErrorInterceptor extends Interceptor {

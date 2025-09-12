@@ -1,10 +1,15 @@
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/base/base_form_controller.dart';
+import 'package:jr_case_boilerplate/core/helpers/toast/toast_helper.dart';
+import 'package:jr_case_boilerplate/core/models/auth/request/register_request_model.dart';
 import 'package:jr_case_boilerplate/core/routes/app_routes.dart';
+import 'package:jr_case_boilerplate/core/services/user_service.dart';
 
 class RegisterController extends BaseFormController {
+  final UserService userService = UserService.instance;
+
   RegisterController()
-    : super({'fullName', 'email', 'password', 'confirmPassword'});
+    : super({'name', 'email', 'password', 'confirmPassword'});
   RxBool isTermsAndConditionsAccepted = false.obs;
 
   void onSignInTap() {
@@ -16,6 +21,18 @@ class RegisterController extends BaseFormController {
   }
 
   void onSignUpTap() {
-    validate();
+    if (!validate()) return;
+
+    if (!isTermsAndConditionsAccepted.value) {
+      ToastHelper.error("error.termsAndConditions".tr);
+      return;
+    }
+
+    userService.register(RegisterRequestModel.fromJson(getFields())).then((
+      value,
+    ) {
+      ToastHelper.success("common.registerSuccess".tr);
+      Get.offNamed(AppRoutes.login);
+    });
   }
 }

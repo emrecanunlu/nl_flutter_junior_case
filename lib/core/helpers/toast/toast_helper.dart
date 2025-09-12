@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jr_case_boilerplate/core/constants/app_colors.dart';
 
 class ToastHelper {
   ToastHelper._();
 
-  static success(String message, {BuildContext? context}) {
+  static void success(String message) {
     Fluttertoast.showToast(
       msg: message,
       backgroundColor: AppColors.success,
@@ -15,7 +14,7 @@ class ToastHelper {
     );
   }
 
-  static error(String message, {BuildContext? context}) {
+  static void error(String message) {
     Fluttertoast.showToast(
       msg: message,
       backgroundColor: AppColors.error,

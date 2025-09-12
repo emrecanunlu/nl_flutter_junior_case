@@ -6,7 +6,6 @@ class BaseFormController extends BaseController {
   late Map<String, TextEditingController> fields;
 
   BaseFormController(Set<String> fieldNames) {
-    // fields mapini oluştur
     fields = {for (var name in fieldNames) name: TextEditingController()};
     formKey = GlobalKey<FormState>();
   }
