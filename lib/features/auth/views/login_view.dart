@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/base/base_view.dart';
 import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
+import 'package:jr_case_boilerplate/core/mixins/validators_mixin.dart';
 import 'package:jr_case_boilerplate/core/widgets/app_icon/app_icon_widget.dart';
 import 'package:jr_case_boilerplate/core/widgets/buttons/custom_primary_button.dart';
 import 'package:jr_case_boilerplate/core/widgets/container/gradient_container.dart';
@@ -12,7 +13,7 @@ import 'package:jr_case_boilerplate/features/auth/widgets/auth_rich_text.dart';
 import 'package:jr_case_boilerplate/features/auth/widgets/social_button.dart';
 import 'package:lottie/lottie.dart';
 
-class LoginView extends BaseView<LoginController> {
+class LoginView extends BaseView<LoginController> with ValidatorsMixin {
   const LoginView({super.key});
 
   @override
@@ -57,6 +58,10 @@ class LoginView extends BaseView<LoginController> {
     return CustomTextFormField(
       prefixIcon: AppIcons.mail,
       hintText: 'common.email'.tr,
+      controller: controller.field('email'),
+      validator: validateEmail,
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
     );
   }
 
@@ -65,6 +70,10 @@ class LoginView extends BaseView<LoginController> {
       prefixIcon: AppIcons.lock,
       obscureText: true,
       hintText: 'common.password'.tr,
+      controller: controller.field('password'),
+      validator: validateRequiredField,
+      keyboardType: TextInputType.visiblePassword,
+      textInputAction: TextInputAction.done,
     );
   }
 
@@ -82,7 +91,10 @@ class LoginView extends BaseView<LoginController> {
   }
 
   Widget buildSignInButton() {
-    return CustomPrimaryButton(onPressed: () {}, title: 'common.signIn'.tr);
+    return CustomPrimaryButton(
+      onPressed: controller.onSignInTap,
+      title: 'common.signIn'.tr,
+    );
   }
 
   Widget buildSocialButtonRow() {
@@ -100,25 +112,28 @@ class LoginView extends BaseView<LoginController> {
   Widget buildForm() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        children: [
-          AppIcon(),
-          const SizedBox(height: 24),
-          buildTitle(),
-          const SizedBox(height: 12),
-          buildSubtitle(),
-          const SizedBox(height: 24),
-          buildEmailFormField(),
-          const SizedBox(height: 16),
-          buildPasswordFormField(),
-          buildForgotPasswordButton(),
-          const SizedBox(height: 16),
-          buildSignInButton(),
-          const SizedBox(height: 24),
-          buildSocialButtonRow(),
-          const SizedBox(height: 24),
-          AuthRichText.signUp(onTap: controller.onSignUpTap),
-        ],
+      child: Form(
+        key: controller.formKey,
+        child: Column(
+          children: [
+            AppIcon(),
+            const SizedBox(height: 24),
+            buildTitle(),
+            const SizedBox(height: 12),
+            buildSubtitle(),
+            const SizedBox(height: 24),
+            buildEmailFormField(),
+            const SizedBox(height: 16),
+            buildPasswordFormField(),
+            buildForgotPasswordButton(),
+            const SizedBox(height: 16),
+            buildSignInButton(),
+            const SizedBox(height: 24),
+            buildSocialButtonRow(),
+            const SizedBox(height: 24),
+            AuthRichText.signUp(onTap: controller.onSignUpTap),
+          ],
+        ),
       ),
     );
   }

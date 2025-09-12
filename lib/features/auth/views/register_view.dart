@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/base/base_view.dart';
 import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
+import 'package:jr_case_boilerplate/core/mixins/validators_mixin.dart';
 import 'package:jr_case_boilerplate/core/widgets/app_icon/app_icon_widget.dart';
 import 'package:jr_case_boilerplate/core/widgets/container/gradient_container.dart';
 import 'package:jr_case_boilerplate/core/widgets/buttons/custom_primary_button.dart';
@@ -11,7 +12,7 @@ import 'package:jr_case_boilerplate/features/auth/widgets/auth_rich_text.dart';
 import 'package:jr_case_boilerplate/features/auth/widgets/social_button.dart';
 import 'package:jr_case_boilerplate/features/auth/widgets/terms_and_cnoditions_checkbox.dart';
 
-class RegisterView extends BaseView<RegisterController> {
+class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
   const RegisterView({super.key});
 
   @override
@@ -61,24 +62,30 @@ class RegisterView extends BaseView<RegisterController> {
   }
 
   Widget buildSignUpButton() {
-    return CustomPrimaryButton(onPressed: () {}, title: 'common.signUp'.tr);
+    return CustomPrimaryButton(
+      onPressed: controller.onSignUpTap,
+      title: 'common.signUp'.tr,
+    );
   }
 
   Widget buildFormFields() {
-    return Column(
-      children: [
-        buildFullNameFormField(),
-        const SizedBox(height: 16),
-        buildEmailFormField(),
-        const SizedBox(height: 16),
-        buildPasswordFormField(),
-        const SizedBox(height: 16),
-        buildConfirmPasswordFormField(),
-        const SizedBox(height: 16),
-        buildTermsAndConditionsCheckbox(),
-        const SizedBox(height: 24),
-        buildSignUpButton(),
-      ],
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        children: [
+          buildFullNameFormField(),
+          const SizedBox(height: 16),
+          buildEmailFormField(),
+          const SizedBox(height: 16),
+          buildPasswordFormField(),
+          const SizedBox(height: 16),
+          buildConfirmPasswordFormField(),
+          const SizedBox(height: 16),
+          buildTermsAndConditionsCheckbox(),
+          const SizedBox(height: 24),
+          buildSignUpButton(),
+        ],
+      ),
     );
   }
 
@@ -106,30 +113,40 @@ class RegisterView extends BaseView<RegisterController> {
   Widget buildFullNameFormField() {
     return CustomTextFormField(
       prefixIcon: AppIcons.user,
+      controller: controller.field('fullName'),
       hintText: 'common.fullName'.tr,
+      validator: validateFullName,
     );
   }
 
   Widget buildEmailFormField() {
     return CustomTextFormField(
       prefixIcon: AppIcons.mail,
+      controller: controller.field('email'),
       hintText: 'common.email'.tr,
+      validator: validateEmail,
     );
   }
 
   Widget buildPasswordFormField() {
     return CustomTextFormField(
       prefixIcon: AppIcons.lock,
+      controller: controller.field('password'),
       hintText: 'common.password'.tr,
       obscureText: true,
+      validator: validatePassword,
     );
   }
 
   Widget buildConfirmPasswordFormField() {
     return CustomTextFormField(
       prefixIcon: AppIcons.lock,
+      controller: controller.field('confirmPassword'),
       hintText: 'common.confirmPassword'.tr,
       obscureText: true,
+      validator:
+          (value) =>
+              validateConfirmPassword(value, controller.field('password').text),
     );
   }
 

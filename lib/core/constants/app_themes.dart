@@ -88,6 +88,14 @@ class AppThemes {
         borderSide: BorderSide(color: AppColors.white20),
         borderRadius: BorderRadius.circular(18),
       ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.error),
+        borderRadius: BorderRadius.circular(18),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.error),
+        borderRadius: BorderRadius.circular(18),
+      ),
     ),
 
     checkboxTheme: CheckboxThemeData(
