@@ -70,6 +70,7 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
 
   Widget buildFormFields() {
     return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: controller.formKey,
       child: Column(
         children: [
@@ -116,6 +117,8 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
       controller: controller.field('fullName'),
       hintText: 'common.fullName'.tr,
       validator: validateFullName,
+      textInputAction: TextInputAction.next,
+      keyboardType: TextInputType.name,
     );
   }
 
@@ -125,6 +128,8 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
       controller: controller.field('email'),
       hintText: 'common.email'.tr,
       validator: validateEmail,
+      textInputAction: TextInputAction.next,
+      keyboardType: TextInputType.emailAddress,
     );
   }
 
@@ -135,6 +140,8 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
       hintText: 'common.password'.tr,
       obscureText: true,
       validator: validatePassword,
+      textInputAction: TextInputAction.next,
+      keyboardType: TextInputType.visiblePassword,
     );
   }
 
@@ -147,6 +154,8 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
       validator:
           (value) =>
               validateConfirmPassword(value, controller.field('password').text),
+      textInputAction: TextInputAction.done,
+      keyboardType: TextInputType.visiblePassword,
     );
   }
 

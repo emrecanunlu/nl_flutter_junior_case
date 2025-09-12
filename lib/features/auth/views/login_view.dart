@@ -71,7 +71,7 @@ class LoginView extends BaseView<LoginController> with ValidatorsMixin {
       obscureText: true,
       hintText: 'common.password'.tr,
       controller: controller.field('password'),
-      validator: validateRequiredField,
+      validator: validatePassword,
       keyboardType: TextInputType.visiblePassword,
       textInputAction: TextInputAction.done,
     );
@@ -113,6 +113,7 @@ class LoginView extends BaseView<LoginController> with ValidatorsMixin {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         key: controller.formKey,
         child: Column(
           children: [

@@ -21,11 +21,11 @@ class AppTranslations extends Translations {
 
       'validation.required': 'Bu alan zorunludur',
       'validation.invalidEmail': 'Geçersiz e-posta adresi',
-      'validation.password': 'Şifre en az 6 karakter olmalıdır',
-      'validation.invalidFullName': 'Ad soyad en az 2 karakter olmalıdır',
+      'validation.password': 'Şifre en az @length karakter olmalıdır',
+      'validation.minLength': 'Ad soyad en az @length karakter olmalıdır',
       'validation.confirmPassword': 'Şifreler eşleşmiyor',
       'validation.invalidConfirmPassword': 'Şifreler eşleşmiyor',
-      'validation.invalidPassword': 'Şifre en az 6 karakter olmalıdır',
+      'validation.invalidPassword': 'Şifre en az @length karakter olmalıdır',
     },
   };
 }

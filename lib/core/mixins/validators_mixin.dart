@@ -23,7 +23,7 @@ mixin ValidatorsMixin {
       return 'validation.required'.tr;
     }
     if (value.length < 6) {
-      return 'validation.invalidPassword'.tr;
+      return 'validation.invalidPassword'.trParams({'length': '6'});
     }
     return null;
   }
@@ -33,7 +33,7 @@ mixin ValidatorsMixin {
       return 'validation.required'.tr;
     }
     if (value.trim().length < 2) {
-      return 'validation.invalidFullName'.tr;
+      return 'validation.minLength'.trParams({'length': '2'});
     }
     return null;
   }
