@@ -9,7 +9,6 @@ class HomeController extends BaseController {
 
   RxList<MovieModel> movies = <MovieModel>[].obs;
   RxInt currentPage = 1.obs;
-  RxBool isLoading = false.obs;
   RxBool hasMoreData = true.obs;
 
   @override
@@ -54,5 +53,9 @@ class HomeController extends BaseController {
     if (hasMoreData.value && !isLoading.value) {
       loadMovies();
     }
+  }
+
+  void onFavoritePressed(MovieModel movie) {
+    debugPrint('Favorite pressed: ${movie.title}');
   }
 }
