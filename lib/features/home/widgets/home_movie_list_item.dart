@@ -194,7 +194,7 @@ class _HomeMovieListItemState extends State<HomeMovieListItem> {
       bottom: 150,
       right: 24,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(24),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
           child: SizedBox(
@@ -209,6 +209,9 @@ class _HomeMovieListItemState extends State<HomeMovieListItem> {
                 ),
                 side: BorderSide(
                   color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.2),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
                 ),
               ),
               child: SvgPicture.asset(

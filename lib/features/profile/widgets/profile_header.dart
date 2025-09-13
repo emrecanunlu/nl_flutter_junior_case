@@ -16,7 +16,16 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [buildHeader(), buildProfileInfo()]);
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
+          ),
+        ),
+      ),
+      child: Column(children: [buildHeader(), buildProfileInfo()]),
+    );
   }
 
   Widget buildHeader() {

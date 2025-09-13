@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/base/base_controller.dart';
+import 'package:jr_case_boilerplate/core/controllers/dashboard/profile_controller.dart';
 import 'package:jr_case_boilerplate/core/models/movie/movie_model.dart';
 import 'package:jr_case_boilerplate/core/services/movie_service.dart';
 
 class HomeController extends BaseController {
   final MovieService _movieService = MovieService.instance;
+  final ProfileController _profileController = Get.put(ProfileController());
 
   RxList<MovieModel> movies = <MovieModel>[].obs;
   RxInt currentPage = 1.obs;
@@ -55,8 +57,16 @@ class HomeController extends BaseController {
     }
   }
 
-  void onFavoritePressed(MovieModel movie) {
-    movie.isFavorite = !movie.isFavorite;
-    movies.refresh();
+  void onFavoritePressed(MovieModel movie) async {
+    try {
+      movie.isFavorite = !movie.isFavorite;
+      movies.refresh();
+
+      await _movieService.favoriteMovie(movie.id);
+      _profileController.loadFavoriteMovies();
+    } catch (e) {
+      movie.isFavorite = !movie.isFavorite;
+      movies.refresh();
+    }
   }
 }

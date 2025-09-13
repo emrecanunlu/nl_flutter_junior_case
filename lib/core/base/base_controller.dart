@@ -7,6 +7,6 @@ class BaseController extends GetxController {
   RxBool isLoading = false.obs;
 
   void setLoading(bool value) {
-    isLoading.value = true;
+    isLoading.value = value;
   }
 }
