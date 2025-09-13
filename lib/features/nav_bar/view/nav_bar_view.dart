@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jr_case_boilerplate/core/base/base_view.dart';
 import 'package:jr_case_boilerplate/core/controllers/dashboard/navbar_controller.dart';
 import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
+import 'package:jr_case_boilerplate/core/constants/app_colors.dart';
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/features/nav_bar/widgets/custom_nav_bar_item.dart';
 import 'package:jr_case_boilerplate/features/home/view/home_view.dart';
@@ -19,7 +20,7 @@ class NavBarView extends BaseView<NavbarController> {
       body: Obx(() => buildBody()),
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(left: 24, right: 24, bottom: 0, top: 16),
-        decoration: BoxDecoration(color: Get.theme.colorScheme.surface),
+        decoration: BoxDecoration(gradient: AppColors.navbarLinearGradient),
         child: SafeArea(
           child: Obx(() {
             return Row(

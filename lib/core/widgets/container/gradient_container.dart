@@ -3,8 +3,13 @@ import '../../constants/app_colors.dart';
 
 class GradientContainer extends StatelessWidget {
   final Widget child;
+  final bool showRadialGradient;
 
-  const GradientContainer({super.key, required this.child});
+  const GradientContainer({
+    super.key,
+    required this.child,
+    this.showRadialGradient = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +27,11 @@ class GradientContainer extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 200, // Yeterli yükseklik
-                decoration: const BoxDecoration(
-                  gradient: AppColors.darkRadialGradient,
+                decoration: BoxDecoration(
+                  gradient:
+                      showRadialGradient
+                          ? AppColors.backgroundLinearGradient
+                          : null,
                 ),
               ),
             ),

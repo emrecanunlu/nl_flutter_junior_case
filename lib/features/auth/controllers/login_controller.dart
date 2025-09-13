@@ -6,6 +6,8 @@ import 'package:jr_case_boilerplate/core/routes/app_routes.dart';
 import 'package:jr_case_boilerplate/core/services/user_service.dart';
 
 class LoginController extends BaseFormController {
+  var isLoading = false.obs;
+
   final AuthManager _authManager = AuthManager.instance;
   final UserService _userService = UserService.instance;
 
@@ -14,16 +16,22 @@ class LoginController extends BaseFormController {
   void onSignInTap() {
     if (!validate()) return;
 
-    _userService.login(LoginRequestModel.fromJson(getFields())).then((value) {
-      _authManager.saveSession(token: value.data!.token, user: value.data!);
+    isLoading.value = true;
+    _userService
+        .login(LoginRequestModel.fromJson(getFields()))
+        .then((value) async {
+          _authManager.saveSession(token: value.data!.token, user: value.data!);
 
-      if (value.data?.photoUrl.isEmpty ?? true) {
-        Get.offNamed(AppRoutes.uploadPhoto);
-        return;
-      }
+          if (value.data?.photoUrl.isEmpty ?? true) {
+            await Get.offNamed(AppRoutes.uploadPhoto);
+            return;
+          }
 
-      Get.offNamed(AppRoutes.dashboard);
-    });
+          Get.offNamed(AppRoutes.navBar);
+        })
+        .catchError((error) {
+          isLoading.value = false;
+        });
   }
 
   void onSignUpTap() {

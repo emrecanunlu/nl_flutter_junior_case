@@ -18,6 +18,10 @@ class AppTranslations extends Translations {
       "error.termsAndConditions":
           "Lütfen kullanıcı sözleşmesini okuyup kabul ediniz!",
 
+      'common.profile': 'Profil',
+      'common.limitedOffer': 'Sınırlı Teklif',
+      'common.addPhoto': 'Fotoğraf Ekle',
+
       'common.email': 'E-Posta',
       'common.password': 'Şifre',
       'common.confirmPassword': 'Şifre Tekrar',

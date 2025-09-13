@@ -91,9 +91,13 @@ class LoginView extends BaseView<LoginController> with ValidatorsMixin {
   }
 
   Widget buildSignInButton() {
-    return CustomPrimaryButton(
-      onPressed: controller.onSignInTap,
-      title: 'common.signIn'.tr,
+    return Obx(
+      () => CustomPrimaryButton(
+        onPressed: controller.onSignInTap,
+        title: 'common.signIn'.tr,
+        isLoading: controller.isLoading.value,
+        disabled: controller.isLoading.value,
+      ),
     );
   }
 

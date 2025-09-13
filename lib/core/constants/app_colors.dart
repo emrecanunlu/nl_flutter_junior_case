@@ -48,14 +48,18 @@ class AppColors {
     ],
   );
 
-  static const RadialGradient darkRadialGradient = RadialGradient(
-    center: Alignment.center,
-    radius: 0.5,
-    colors: [
-      Color(0xFFE50914), // primary
-      Color(0x008D0000), // transparent red
-    ],
-    stops: [0.0, 1.0],
+  static const LinearGradient navbarLinearGradient = LinearGradient(
+    colors: [Color(0xFF090909), Color(0xFF090909)],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+    stops: [0.0, 0.2],
+  );
+
+  static const LinearGradient backgroundLinearGradient = LinearGradient(
+    colors: [Color(0xFF090909), Color(0xFF3F0306)],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+    stops: [0.4, 1.0],
   );
 
   static const LinearGradient appIconGradient = LinearGradient(

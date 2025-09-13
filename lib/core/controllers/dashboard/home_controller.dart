@@ -56,6 +56,7 @@ class HomeController extends BaseController {
   }
 
   void onFavoritePressed(MovieModel movie) {
-    debugPrint('Favorite pressed: ${movie.title}');
+    movie.isFavorite = !movie.isFavorite;
+    movies.refresh();
   }
 }

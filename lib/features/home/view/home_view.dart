@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/base/base_view.dart';
 import 'package:jr_case_boilerplate/core/controllers/dashboard/home_controller.dart';
-import 'package:jr_case_boilerplate/features/profile/widgets/profile_movie_card.dart';
+import 'package:jr_case_boilerplate/features/home/widgets/home_movie_list_item.dart';
 
 class HomeView extends BaseView<HomeController> {
   const HomeView({super.key});
@@ -28,7 +28,7 @@ class HomeView extends BaseView<HomeController> {
           },
           itemBuilder: (context, index) {
             final movie = controller.movies[index];
-            return ProfileMovieCard(
+            return HomeMovieListItem(
               movie: movie,
               onFavoritePressed: () {
                 controller.onFavoritePressed(movie);
