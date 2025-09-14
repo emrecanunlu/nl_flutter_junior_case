@@ -24,7 +24,7 @@ class ShartFlix extends StatelessWidget {
       themeMode: ThemeMode.dark,
       theme: AppThemes.darkTheme,
       translations: AppTranslations(),
-      initialRoute: AppRoutes.navBar, // İlk route
+      initialRoute: AppRoutes.login, // İlk route
       locale: const Locale('tr', 'TR'),
       getPages: AppRouter.routes, // Route listesi
       debugShowCheckedModeBanner: false, // Debug banner'ı gizle

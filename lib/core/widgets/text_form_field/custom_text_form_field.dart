@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
+import 'package:jr_case_boilerplate/core/constants/app_spacing.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final AppIcons prefixIcon;
@@ -79,16 +80,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   : Get.theme.colorScheme.onSurface.withValues(alpha: 0.5),
         ),
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 8,
-            top: 12,
-            bottom: 12,
-          ),
+          padding: AppSpacing.iconPadding,
           child: SvgPicture.asset(
             widget.prefixIcon.path,
-            width: 24,
-            height: 24,
+            width: AppSpacing.iconSize,
+            height: AppSpacing.iconSize,
             colorFilter: ColorFilter.mode(
               Get.theme.colorScheme.onSurface,
               BlendMode.srcIn,
@@ -100,18 +96,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 ? GestureDetector(
                   onTap: _togglePasswordVisibility,
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10,
-                      right: 20,
-                      top: 12,
-                      bottom: 12,
-                    ),
+                    padding: AppSpacing.suffixIconPadding,
                     child: SvgPicture.asset(
                       _isPasswordVisible
                           ? AppIcons.hide.path
                           : AppIcons.see.path,
-                      width: 24,
-                      height: 24,
+                      width: AppSpacing.iconSize,
+                      height: AppSpacing.iconSize,
                       colorFilter: ColorFilter.mode(
                         Get.theme.colorScheme.onSurface,
                         BlendMode.srcIn,
@@ -120,13 +111,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   ),
                 )
                 : null,
-        contentPadding: EdgeInsets.only(
-          left: 0,
-          right: widget.obscureText ? 0 : 20,
-          top: 16,
-          bottom: 16,
-        ),
-        constraints: const BoxConstraints(minHeight: 58),
+        contentPadding: AppSpacing.contentPadding,
+        constraints: AppSpacing.inputConstraints,
       ),
     );
   }

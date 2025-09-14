@@ -6,6 +6,7 @@ import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
 import 'package:jr_case_boilerplate/core/enums/assets/app_images.dart';
 import 'package:jr_case_boilerplate/core/models/movie/movie_model.dart';
 import 'package:jr_case_boilerplate/core/widgets/cached_network_image/custom_cached_network_image.dart';
+import 'package:jr_case_boilerplate/core/constants/app_spacing.dart';
 
 class HomeMovieListItem extends StatefulWidget {
   final MovieModel movie;
@@ -90,7 +91,7 @@ class _HomeMovieListItemState extends State<HomeMovieListItem> {
   Widget _buildContent() {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32),
+        padding: AppSpacing.homeContentPadding,
         child: Column(
           children: [
             const Spacer(),
@@ -111,7 +112,7 @@ class _HomeMovieListItemState extends State<HomeMovieListItem> {
                   ),
                 ),
 
-                const SizedBox(width: 16),
+                AppSpacing.horizontalLg,
 
                 Expanded(
                   child: Column(
@@ -174,7 +175,7 @@ class _HomeMovieListItemState extends State<HomeMovieListItem> {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 4),
+          AppSpacing.verticalXs,
           Text(
             'Devamını oku',
             style: Get.textTheme.bodyMedium?.copyWith(

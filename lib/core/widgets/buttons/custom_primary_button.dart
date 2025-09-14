@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../constants/app_spacing.dart';
 
 enum ButtonVariant { default_, text }
 
@@ -20,7 +21,11 @@ class CustomPrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: 56, width: double.maxFinite, child: _buildButton());
+    return SizedBox(
+      height: AppSpacing.buttonHeight,
+      width: double.maxFinite,
+      child: _buildButton(),
+    );
   }
 
   Widget _buildButton() {
@@ -32,7 +37,7 @@ class CustomPrimaryButton extends StatelessWidget {
           onPressed: isButtonDisabled ? null : onPressed,
           style: FilledButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: AppSpacing.borderRadiusAll,
             ),
           ).copyWith(
             backgroundColor:
@@ -50,7 +55,7 @@ class CustomPrimaryButton extends StatelessWidget {
           style: TextButton.styleFrom(
             backgroundColor: Colors.transparent,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: AppSpacing.borderRadiusAll,
             ),
           ),
           child: _buildButtonChild(),

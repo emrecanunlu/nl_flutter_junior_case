@@ -6,8 +6,6 @@ import 'package:jr_case_boilerplate/core/routes/app_routes.dart';
 import 'package:jr_case_boilerplate/core/services/user_service.dart';
 
 class LoginController extends BaseFormController {
-  var isLoading = false.obs;
-
   final AuthManager _authManager = AuthManager.instance;
   final UserService _userService = UserService.instance;
 
@@ -16,7 +14,7 @@ class LoginController extends BaseFormController {
   void onSignInTap() {
     if (!validate()) return;
 
-    isLoading.value = true;
+    setLoading(true);
     _userService
         .login(LoginRequestModel.fromJson(getFields()))
         .then((value) async {
@@ -30,7 +28,7 @@ class LoginController extends BaseFormController {
           Get.offNamed(AppRoutes.navBar);
         })
         .catchError((error) {
-          isLoading.value = false;
+          setLoading(false);
         });
   }
 

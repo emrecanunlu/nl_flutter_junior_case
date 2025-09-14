@@ -11,6 +11,7 @@ import 'package:jr_case_boilerplate/core/widgets/text_form_field/custom_text_for
 import 'package:jr_case_boilerplate/features/auth/controllers/login_controller.dart';
 import 'package:jr_case_boilerplate/features/auth/widgets/auth_rich_text.dart';
 import 'package:jr_case_boilerplate/features/auth/widgets/social_button.dart';
+import 'package:jr_case_boilerplate/core/constants/app_spacing.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginView extends BaseView<LoginController> with ValidatorsMixin {
@@ -103,7 +104,7 @@ class LoginView extends BaseView<LoginController> with ValidatorsMixin {
 
   Widget buildSocialButtonRow() {
     return Row(
-      spacing: 15,
+      spacing: AppSpacing.socialButtonSpacing.horizontal,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SocialButton(icon: AppIcons.google, onPressed: () {}),
@@ -115,27 +116,27 @@ class LoginView extends BaseView<LoginController> with ValidatorsMixin {
 
   Widget buildForm() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: AppSpacing.authFormPadding,
       child: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         key: controller.formKey,
         child: Column(
           children: [
             AppIcon(),
-            const SizedBox(height: 24),
+            AppSpacing.verticalXl,
             buildTitle(),
-            const SizedBox(height: 12),
+            AppSpacing.verticalMd,
             buildSubtitle(),
-            const SizedBox(height: 24),
+            AppSpacing.verticalXl,
             buildEmailFormField(),
-            const SizedBox(height: 16),
+            AppSpacing.verticalLg,
             buildPasswordFormField(),
             buildForgotPasswordButton(),
-            const SizedBox(height: 16),
+            AppSpacing.verticalLg,
             buildSignInButton(),
-            const SizedBox(height: 24),
+            AppSpacing.verticalXl,
             buildSocialButtonRow(),
-            const SizedBox(height: 24),
+            AppSpacing.verticalXl,
             AuthRichText.signUp(onTap: controller.onSignUpTap),
           ],
         ),

@@ -35,11 +35,11 @@ class UploadPhotoView extends BaseView<UploadPhotoController> {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          if (Get.routing.isBack ?? false)
+          if (Get.previousRoute.isNotEmpty)
             Align(
               alignment: Alignment.centerLeft,
               child: CustomIconButton(
-                onPressed: () {},
+                onPressed: () => Get.back(),
                 icon: AppIcons.arrow,
                 width: 44,
                 height: 40,

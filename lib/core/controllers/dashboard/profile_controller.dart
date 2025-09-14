@@ -7,6 +7,7 @@ import 'package:jr_case_boilerplate/core/managers/auth/auth_manager.dart';
 import 'package:jr_case_boilerplate/core/models/movie/movie_model.dart';
 import 'package:jr_case_boilerplate/core/models/offer_package_model.dart';
 import 'package:jr_case_boilerplate/core/models/user/response/user_model.dart';
+import 'package:jr_case_boilerplate/core/routes/app_routes.dart';
 import 'package:jr_case_boilerplate/core/services/movie_service.dart';
 import 'package:jr_case_boilerplate/core/widgets/bottom_sheet/offer_bottom_sheet.dart';
 
@@ -66,5 +67,9 @@ class ProfileController extends BaseController {
       context,
       OfferBottomSheet(onClose: () => Get.back(), offerPackages: offerPackages),
     );
+  }
+
+  void onAddPhotoPressed() {
+    Get.toNamed(AppRoutes.uploadPhoto);
   }
 }

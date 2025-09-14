@@ -18,6 +18,27 @@ class AppTranslations extends Translations {
       "error.termsAndConditions":
           "Lütfen kullanıcı sözleşmesini okuyup kabul ediniz!",
 
+      "common.bonusPremium": "Premium Hesap",
+      "common.bonusMatch": "Daha Fazla Eşleşme",
+      "common.bonusHighlight": "Öne Çıkarma",
+      "common.bonusLikes": "Daha Fazla Beğeni",
+      "common.offerPackageListTitle":
+          "Kilidi açmak için bir jeton paketi seçin",
+      "common.jeton": "Jeton",
+      "common.weeklyPrice": "Başına haftalık",
+      "common.viewAllJetons": "Tüm Jetonları Gör",
+      "common.offerSubtitle":
+          "Jeton paketin’ni seçerek bonus kazanın ve yeni bölümlerin kilidini açın!",
+      "common.bonusListTitle": "Alacağınız Bonuslar",
+
+      "common.hasNoAccount": "Hesabın yok mu? ",
+      "common.hasAccount": "Hesabın var mı? ",
+
+      "common.termsAndConditions": "Kullanıcı sözleşmesinı ",
+      "common.termsAndConditionsButton": "Okudum ve Kabul ediyorum. ",
+      "common.termsAndConditionsSubtitle":
+          " Bu sözleşmeyi okuyarak devam ediniz lütfen.",
+
       'common.profile': 'Profil',
       'common.limitedOffer': 'Sınırlı Teklif',
       'common.addPhoto': 'Fotoğraf Ekle',

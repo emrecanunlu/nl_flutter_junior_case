@@ -32,9 +32,9 @@ class AuthRichText extends StatelessWidget {
     TextAlign? textAlign,
   }) {
     return AuthRichText(
-      beforeText: "Kullanıcı sözleşmesini ",
-      clickableText: 'Okudum ve Kabul ediyorum. ',
-      afterText: ' Bu sözelşmeyi okuyarak devam ediniz lütfen.',
+      beforeText: "common.termsAndConditions".tr,
+      clickableText: 'common.termsAndConditionsButton'.tr,
+      afterText: 'common.termsAndConditionsSubtitle'.tr,
       onTap: onTap,
       textAlign: textAlign,
       isUnderline: true,
@@ -54,8 +54,8 @@ class AuthRichText extends StatelessWidget {
     TextAlign? textAlign,
   }) {
     return AuthRichText(
-      beforeText: 'Hesabın yok mu? ',
-      clickableText: 'Kayıt Ol',
+      beforeText: 'common.hasNoAccount'.tr,
+      clickableText: 'common.signUp'.tr,
       afterText: '',
       onTap: onTap,
       textAlign: textAlign,
@@ -68,8 +68,8 @@ class AuthRichText extends StatelessWidget {
     TextAlign? textAlign,
   }) {
     return AuthRichText(
-      beforeText: 'Hesabın var mı? ',
-      clickableText: 'Giriş Yap',
+      beforeText: 'common.hasAccount'.tr,
+      clickableText: 'common.signIn'.tr,
       afterText: '',
       onTap: onTap,
       textAlign: textAlign,

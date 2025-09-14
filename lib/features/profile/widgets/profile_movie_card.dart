@@ -41,11 +41,7 @@ class ProfileMovieCard extends StatelessWidget {
     return Expanded(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: CustomCachedNetworkImage(
-          width: double.maxFinite,
-          imageUrl: movie.poster,
-          fit: BoxFit.fill,
-        ),
+        child: CustomCachedNetworkImage(imageUrl: movie.poster),
       ),
     );
   }

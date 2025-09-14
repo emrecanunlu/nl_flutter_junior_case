@@ -45,16 +45,11 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   Widget _buildDefaultPlaceholder() {
     return Container(
-      width: width,
-      height: height,
-      color: Get.theme.colorScheme.onSurface.withValues(alpha: 0.05),
-      child: Center(
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-          valueColor: AlwaysStoppedAnimation<Color>(
-            Get.theme.colorScheme.primary,
-          ),
-        ),
+      width: width ?? 32,
+      height: height ?? 32,
+      decoration: BoxDecoration(
+        color: Get.theme.colorScheme.surfaceContainerHighest,
+        borderRadius: borderRadius ?? BorderRadius.circular(8),
       ),
     );
   }

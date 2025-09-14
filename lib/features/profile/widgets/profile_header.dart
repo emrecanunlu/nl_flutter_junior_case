@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:jr_case_boilerplate/core/enums/assets/app_icons.dart';
 import 'package:jr_case_boilerplate/core/models/user/response/user_model.dart';
 import 'package:jr_case_boilerplate/core/widgets/cached_network_image/custom_cached_network_image.dart';
+import 'package:jr_case_boilerplate/core/constants/app_spacing.dart';
 
 class ProfileHeader extends StatelessWidget {
   final UserModel user;
@@ -45,21 +46,21 @@ class ProfileHeader extends StatelessWidget {
 
   Widget buildProfileInfo() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      padding: AppSpacing.profileHeaderPadding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           buildProfileDetails(),
-          const SizedBox(width: 16),
+          AppSpacing.horizontalLg,
           TextButton(
             onPressed: onAddPhotoPressed,
             style: TextButton.styleFrom(
               backgroundColor: Get.theme.colorScheme.onSurface.withValues(
                 alpha: 0.05,
               ),
-              padding: EdgeInsets.symmetric(horizontal: 19, vertical: 10),
+              padding: AppSpacing.profileButtonPadding,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: AppSpacing.borderRadiusSmallAll,
               ),
             ),
             child: Text(
@@ -80,13 +81,13 @@ class ProfileHeader extends StatelessWidget {
         children: [
           CustomCachedNetworkImage(
             imageUrl: user.photoUrl,
-            width: 56,
-            height: 56,
+            width: AppSpacing.avatarSize,
+            height: AppSpacing.avatarSize,
             fit: BoxFit.cover,
-            borderRadius: BorderRadius.circular(56),
+            borderRadius: AppSpacing.borderRadiusCircular,
             errorWidget: Icon(Icons.person),
           ),
-          const SizedBox(width: 8),
+          AppSpacing.horizontalSm,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +100,7 @@ class ProfileHeader extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4),
+                AppSpacing.verticalXs,
                 Text(
                   "ID: 2456834",
                   style: Get.textTheme.bodySmall?.copyWith(

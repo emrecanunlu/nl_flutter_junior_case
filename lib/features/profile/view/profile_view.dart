@@ -5,6 +5,7 @@ import 'package:jr_case_boilerplate/core/controllers/dashboard/profile_controlle
 import 'package:jr_case_boilerplate/core/widgets/container/gradient_container.dart';
 import 'package:jr_case_boilerplate/features/profile/widgets/profile_header.dart';
 import 'package:jr_case_boilerplate/features/profile/widgets/profile_movie_card.dart';
+import 'package:jr_case_boilerplate/core/constants/app_spacing.dart';
 
 class ProfileView extends BaseView<ProfileController> {
   const ProfileView({super.key});
@@ -23,7 +24,7 @@ class ProfileView extends BaseView<ProfileController> {
               // Profile Header
               buildProfileHeader(context),
               // Spacer
-              const SizedBox(height: 16),
+              AppSpacing.verticalLg,
               // Favorite Movies List
               buildFavoriteMoviesList(),
             ],
@@ -36,7 +37,7 @@ class ProfileView extends BaseView<ProfileController> {
   Widget buildProfileHeader(BuildContext context) {
     return ProfileHeader(
       user: controller.user,
-      onAddPhotoPressed: () {},
+      onAddPhotoPressed: controller.onAddPhotoPressed,
       onOfferPressed: () => controller.showOfferBottomSheet(context),
     );
   }
@@ -44,7 +45,7 @@ class ProfileView extends BaseView<ProfileController> {
   Widget buildFavoriteMoviesList() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: AppSpacing.screenPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,7 +57,7 @@ class ProfileView extends BaseView<ProfileController> {
               ),
             ),
 
-            const SizedBox(height: 4),
+            AppSpacing.verticalXs,
 
             // Favorite Movies List
             Obx(() {
@@ -71,12 +72,12 @@ class ProfileView extends BaseView<ProfileController> {
 
               return Expanded(
                 child: GridView.builder(
-                  padding: EdgeInsets.only(bottom: 24, top: 20),
+                  padding: AppSpacing.homeGridPadding,
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.6,
-                    mainAxisSpacing: 16,
-                    crossAxisSpacing: 16,
+                    childAspectRatio: 0.5,
+                    mainAxisSpacing: AppSpacing.gridMainAxisSpacing,
+                    crossAxisSpacing: AppSpacing.gridCrossAxisSpacing,
                     crossAxisCount: 2,
                   ),
                   itemCount: controller.favoriteMovies.length,

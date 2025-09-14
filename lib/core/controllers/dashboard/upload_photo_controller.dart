@@ -53,7 +53,7 @@ class UploadPhotoController extends BaseController {
       // AuthManager'da user'ı güncelle
       await _authManager.updateSession(user: result.data!);
 
-      Get.offNamed(AppRoutes.dashboard);
+      Get.offNamed(AppRoutes.navBar);
     } catch (e) {
       debugPrint('uploadPhoto error: $e');
     } finally {
@@ -65,11 +65,11 @@ class UploadPhotoController extends BaseController {
     if (selectedImagePath.value != null) {
       uploadPhoto();
     } else {
-      Get.offNamed(AppRoutes.dashboard);
+      Get.offNamed(AppRoutes.navBar);
     }
   }
 
   void onSkipTap() {
-    Get.offNamed(AppRoutes.dashboard);
+    Get.offNamed(AppRoutes.navBar);
   }
 }
