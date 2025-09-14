@@ -62,9 +62,13 @@ class RegisterView extends BaseView<RegisterController> with ValidatorsMixin {
   }
 
   Widget buildSignUpButton() {
-    return CustomPrimaryButton(
-      onPressed: controller.onSignUpTap,
-      title: 'common.signUp'.tr,
+    return Obx(
+      () => CustomPrimaryButton(
+        onPressed: controller.onSignUpTap,
+        title: 'common.signUp'.tr,
+        isLoading: controller.isLoading.value,
+        disabled: controller.isLoading.value,
+      ),
     );
   }
 

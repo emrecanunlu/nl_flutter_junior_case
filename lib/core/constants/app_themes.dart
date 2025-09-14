@@ -18,7 +18,7 @@ class AppThemes {
       // Secondary colors
       secondary: AppColors.secondary,
       onSecondary: AppColors.white,
-      secondaryContainer: AppColors.secondary,
+      secondaryContainer: AppColors.brandSecondary,
       onSecondaryContainer: AppColors.white,
 
       // Surface colors

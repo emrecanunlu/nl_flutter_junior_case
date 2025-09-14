@@ -7,6 +7,7 @@ class AppColors {
   static const Color primary = Color(0xFFE50914);
   static const Color primaryDark = Color(0xFF6F060B);
   static const Color secondary = Color(0xFF5949E6);
+  static const Color brandSecondary = Color(0xFF5949E6);
 
   // White Tones
   static const Color white90 = Color(0xE6FFFFFF); // 90%
@@ -81,6 +82,32 @@ class AppColors {
     end: Alignment.bottomCenter,
   );
 
+  static const RadialGradient darkRadialGradient = RadialGradient(
+    center: Alignment.center,
+    radius: 0.5,
+    colors: [
+      Color(0xFFE50914), // primary
+      Color(0x008D0000), // transparent red
+    ],
+    stops: [0.0, 1.0],
+  );
   // TODO: Popular Card ve Normal Card gradient renkleri eksik
   // TODO: Active Nav rengi eksik
+
+  static const RadialGradient normalCardGradient = RadialGradient(
+    center: Alignment(-0.4712, -0.6956), // CSS at 26.44% 15.22%
+    radius: 1.44, // yaklaşık 144.56% = 1.4456
+    colors: [Color(0xFF6F060B), Color(0xFFE50914)],
+    stops: [0.0, 1.0],
+  );
+
+  static const RadialGradient popularCardGradient = RadialGradient(
+    center: Alignment(-0.4712, -0.6956), // 26.44% X, 15.22% Y
+    radius: 1.4456, // 144.56% ≈ 1.4456
+    colors: [
+      Color(0xFF5949E6), // ilk renk
+      Color(0xFFE50914), // ikinci renk
+    ],
+    stops: [0.0, 1.0],
+  );
 }

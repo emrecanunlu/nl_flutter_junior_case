@@ -8,10 +8,12 @@ import 'package:jr_case_boilerplate/core/widgets/cached_network_image/custom_cac
 class ProfileHeader extends StatelessWidget {
   final UserModel user;
   final VoidCallback onAddPhotoPressed;
+  final VoidCallback onOfferPressed;
   const ProfileHeader({
     super.key,
     required this.user,
     required this.onAddPhotoPressed,
+    required this.onOfferPressed,
   });
 
   @override
@@ -82,6 +84,7 @@ class ProfileHeader extends StatelessWidget {
             height: 56,
             fit: BoxFit.cover,
             borderRadius: BorderRadius.circular(56),
+            errorWidget: Icon(Icons.person),
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -118,7 +121,7 @@ class ProfileHeader extends StatelessWidget {
 
   Widget buildOfferButton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: onOfferPressed,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(

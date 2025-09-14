@@ -20,8 +20,11 @@ class ProfileView extends BaseView<ProfileController> {
         child: SafeArea(
           child: Column(
             children: [
-              buildProfileHeader(),
+              // Profile Header
+              buildProfileHeader(context),
+              // Spacer
               const SizedBox(height: 16),
+              // Favorite Movies List
               buildFavoriteMoviesList(),
             ],
           ),
@@ -30,8 +33,12 @@ class ProfileView extends BaseView<ProfileController> {
     );
   }
 
-  Widget buildProfileHeader() {
-    return ProfileHeader(user: controller.user, onAddPhotoPressed: () {});
+  Widget buildProfileHeader(BuildContext context) {
+    return ProfileHeader(
+      user: controller.user,
+      onAddPhotoPressed: () {},
+      onOfferPressed: () => controller.showOfferBottomSheet(context),
+    );
   }
 
   Widget buildFavoriteMoviesList() {
@@ -53,6 +60,11 @@ class ProfileView extends BaseView<ProfileController> {
 
             // Favorite Movies List
             Obx(() {
+              if (controller.favoriteMovies.isEmpty &&
+                  !controller.isLoading.value) {
+                return buildEmptyState();
+              }
+
               if (controller.isLoading.value) {
                 return buildLoader();
               }
@@ -88,5 +100,9 @@ class ProfileView extends BaseView<ProfileController> {
         child: CircularProgressIndicator(color: Get.theme.colorScheme.primary),
       ),
     );
+  }
+
+  Widget buildEmptyState() {
+    return Expanded(child: Center(child: Text('common.noFavoriteMovies'.tr)));
   }
 }
