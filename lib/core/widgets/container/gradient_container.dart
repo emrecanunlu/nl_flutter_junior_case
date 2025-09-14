@@ -6,6 +6,9 @@ class GradientContainer extends StatelessWidget {
   final bool showRadialGradient;
   final EdgeInsetsGeometry? padding;
   final BorderRadiusGeometry? borderRadius;
+  final double? height;
+  final double? width;
+  final AlignmentGeometry? alignment;
 
   const GradientContainer({
     super.key,
@@ -13,11 +16,17 @@ class GradientContainer extends StatelessWidget {
     this.showRadialGradient = true,
     this.padding,
     this.borderRadius,
+    this.height,
+    this.width,
+    this.alignment,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height,
+      width: width,
+      alignment: alignment,
       padding: padding,
       decoration: BoxDecoration(
         borderRadius: borderRadius,

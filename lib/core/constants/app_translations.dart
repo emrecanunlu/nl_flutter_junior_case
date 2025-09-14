@@ -1,6 +1,37 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppTranslations extends Translations {
+  static final Locale locale = const Locale('tr', 'TR');
+
+  /*   // Network hataları
+    switch (err.type) {
+      case DioExceptionType.connectionTimeout:
+        return 'error.connectionTimeout'.tr;
+      case DioExceptionType.sendTimeout:
+        return 'error.sendTimeout'.tr;
+      case DioExceptionType.receiveTimeout:
+        return 'error.connectionTimeout'.tr;
+      case DioExceptionType.connectionError:
+        return 'error.connectionError'.tr;
+      default:
+        return 'error.unknownError'.tr;
+    }
+  }
+
+  String _getLocalizedMessage(String backendMessage) {
+    switch (backendMessage) {
+      case 'INVALID_CREDENTIALS':
+        return 'error.invalidCredentials'.tr;
+      case 'USER_NOT_FOUND':
+        return 'error.userNotFound'.tr;
+      case 'EMAIL_ALREADY_EXISTS':
+        return 'error.emailAlreadyExists'.tr;
+      default:
+        return 'error.unknownError'.tr;
+    }
+  } */
+
   @override
   Map<String, Map<String, String>> get keys => {
     'tr_TR': {
@@ -18,6 +49,17 @@ class AppTranslations extends Translations {
       "error.termsAndConditions":
           "Lütfen kullanıcı sözleşmesini okuyup kabul ediniz!",
 
+      "error.connectionTimeout":
+          "Bağlantı zaman aşımı, lütfen tekrar deneyiniz.",
+      "error.sendTimeout": "Gönderim zaman aşımı, lütfen tekrar deneyiniz.",
+      "error.connectionError": "Bağlantı hatası, lütfen tekrar deneyiniz.",
+      "error.unknownError": "Bilinmeyen hata, lütfen tekrar deneyiniz.",
+      "error.invalidCredentials":
+          "Geçersiz kimlik bilgileri, lütfen tekrar deneyiniz.",
+      "error.userNotFound": "Kullanıcı bulunamadı, lütfen tekrar deneyiniz.",
+      "error.emailAlreadyExists": "E-posta zaten mevcut.",
+
+      "common.noFavoriteMovies": "Beğendiniz bir film bulunamadı.",
       "common.bonusPremium": "Premium Hesap",
       "common.bonusMatch": "Daha Fazla Eşleşme",
       "common.bonusHighlight": "Öne Çıkarma",

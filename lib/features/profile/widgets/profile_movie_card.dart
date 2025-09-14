@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:jr_case_boilerplate/core/constants/app_spacing.dart';
 import 'package:jr_case_boilerplate/core/models/movie/movie_model.dart';
 import 'package:jr_case_boilerplate/core/widgets/cached_network_image/custom_cached_network_image.dart';
 
@@ -13,9 +14,9 @@ class ProfileMovieCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         buildMoviePoster(),
-        const SizedBox(height: 16),
+        AppSpacing.verticalSm,
         buildMovieTitle(),
-        const SizedBox(height: 4),
+        AppSpacing.verticalXs,
         buildMovieDirector(),
       ],
     );
@@ -41,7 +42,11 @@ class ProfileMovieCard extends StatelessWidget {
     return Expanded(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: CustomCachedNetworkImage(imageUrl: movie.poster),
+        child: CustomCachedNetworkImage(
+          imageUrl: movie.poster,
+          width: double.maxFinite,
+          fit: BoxFit.fill,
+        ),
       ),
     );
   }

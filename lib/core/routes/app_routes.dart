@@ -1,6 +1,9 @@
 class AppRoutes {
   AppRoutes._();
 
+  // Splash Routes
+  static const String splash = '/splash';
+
   // Dashboard Routes
   static const String dashboard = '/dashboard';
   static const String uploadPhoto = '$dashboard/upload-photo';

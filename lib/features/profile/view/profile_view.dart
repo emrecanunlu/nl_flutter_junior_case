@@ -75,7 +75,7 @@ class ProfileView extends BaseView<ProfileController> {
                   padding: AppSpacing.homeGridPadding,
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.5,
+                    childAspectRatio: 0.6,
                     mainAxisSpacing: AppSpacing.gridMainAxisSpacing,
                     crossAxisSpacing: AppSpacing.gridCrossAxisSpacing,
                     crossAxisCount: 2,
