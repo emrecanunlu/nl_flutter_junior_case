@@ -59,6 +59,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       obscureText: widget.obscureText ? !_isPasswordVisible : false,
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
+      autocorrect: false,
       validator: (value) {
         final result = widget.validator?.call(value);
         setState(() {
